@@ -107,28 +107,41 @@ public class InterFun implements Interpretar{
         }
 
     }
-    public ArrayList<ArrayList<Map<String, String>>> crearParentesis(ArrayList<Map<String, String>> d){
-        for (int i = arrayAST.size(); i>0; i--){
+    public ArrayList<Map<String, String>> crearParentesis(ArrayList<Map<String, String>> h ){
 
-            if(arrayAST.get(i-1).get("ID").equals("Open paren")){
+        try {
+            for (int i = arrayAST.size(); i>0; i--){
+                if(arrayAST.get(i-1).get("ID").equals("Open paren")){
+                    ArrayList<Map<String, String>> j = new ArrayList<>();
+                    arrayAST.remove(i-1);
+                    crearParentesis(j);
+                    listaFinal.add(h);
+                }else if (arrayAST.get(i-1).get("ID").equals("Close paren")){
+                    ArrayList<Map<String, String>> j = new ArrayList<>();
+                    arrayAST.remove(i-1);
+                    crearParentesis(j);
+                    listaFinal.add(h);
+                    return h;
+                }else{
 
-                System.out.println("hola");
-                ArrayList<Map<String, String>> j = new ArrayList<>();
-                j.add(arrayAST.get(i-1));
-                listaFinal.add(j);
-            }else if (arrayAST.get(i-1).get("ID").equals("Close paren")){
-                System.out.println("hola1");
-                return listaFinal;
-            }else{
+                    h.add(arrayAST.remove(i-1));
+                    return crearParentesis(h);
 
-                ArrayList<Map<String, String>> j = new ArrayList<>();
-                j.add(arrayAST.get(i-1));
-                crearParentesis(j);
-                listaFinal.add(j);
+                }
+                //System.out.println(listaFinal.toString());
             }
-            System.out.println(listaFinal);
+            return null;
+
+        } catch (Exception e) {
+
         }
-        return null;
+        for (int i = 0; i<listaFinal.size();i++){
+            if(listaFinal.get(i).isEmpty()){
+                listaFinal.remove(i);
+            }
+        }
+        System.out.println(listaFinal.toString());return null;
+
     }
     /*
 
