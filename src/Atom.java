@@ -1,29 +1,35 @@
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Atom{
 
 
-    public String traducirA (Arrarlist<String> index){
-        ArrayList <String> dato = new Arraylist <String> (); 
-        for (String palabra : index){
-            if(palabra.equals("atom")){
+    public void traducirA (ArrayList <String>index){
+        ArrayList <String> dato = new  ArrayList <String> (); 
+        //for (String palabra : index)
+        
+        
+        
+        for(int i =0; i<=index.size();i++){
+            if(index.get(i).equals("ATOM")){
 
             }
             else {
-                dato.add(palabra);
+                dato.add(index.get(i).toString());
 
             }
         }
         if (dato.size()==1){
-            return "True";
-
+            System.out.println("True");
+            
+            
         }
         else {
-            return "False";
+            System.out.println("FALSE");
+          
 
         }
-
-
+        
     }
 }

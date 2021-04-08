@@ -9,6 +9,7 @@ public class InterFun implements Interpretar{
     private final ArrayList<String> func = new ArrayList<>();
     private Arbol arbolFun;
     ArrayList<ArrayList<Map<String, String>>> listaFinal = new ArrayList<>();
+    private Atom atm=new Atom();
 
 
 
@@ -37,6 +38,7 @@ public class InterFun implements Interpretar{
 
     @Override
     public ArrayList<String> sepTokens(String inputLisp) {
+        contexto.clear();
         inputLisp = inputLisp.replace("(", " ( ").replace(")", " ) ");
            /*
         Se crea una pila y un objeto String tokenizer para obtener los tokens de la expresion
@@ -74,11 +76,22 @@ public class InterFun implements Interpretar{
             }
         }
         System.out.println(contexto.toString());
-
+        
+        
 
         return pila;
     }
-
+    
+    
+    public ArrayList<String> devolverContexto (){
+        
+        
+        
+        return contexto;
+        
+        
+    }
+    
     /*
     Se crea el abstract syntax tree
      */
@@ -105,8 +118,10 @@ public class InterFun implements Interpretar{
 
             }
         }
+        
 
     }
+    
     public ArrayList<Map<String, String>> crearParentesis(ArrayList<Map<String, String>> h ){
 
         try {
@@ -128,7 +143,7 @@ public class InterFun implements Interpretar{
                     return crearParentesis(h);
 
                 }
-                //System.out.println(listaFinal.toString());
+                System.out.println(listaFinal.toString());
             }
             return null;
 
@@ -140,7 +155,8 @@ public class InterFun implements Interpretar{
                 listaFinal.remove(i);
             }
         }
-        System.out.println(listaFinal.toString());return null;
+        System.out.println(listaFinal.toString());
+        return null;
 
     }
     /*
@@ -152,8 +168,6 @@ Se crea la calculadora para LISP
         /*
         aritmeticas
          */
-
-
 
 
     }
